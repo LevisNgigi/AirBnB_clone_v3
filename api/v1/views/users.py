@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-""" 
-objects that handle all default RestFul API actions for Users
- """
+""" objects that handle all default RestFul API actions for Users """
 from models.user import User
 from models import storage
 from api.v1.views import app_views
@@ -25,7 +23,7 @@ def get_users():
 
 @app_views.route('/users/<user_id>', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/user/get_user.yml', methods=['GET'])
-def get_user_id(user_id):
+def get_user(user_id):
     """ Retrieves an user """
     user = storage.get(User, user_id)
     if not user:
@@ -37,7 +35,7 @@ def get_user_id(user_id):
 @app_views.route('/users/<user_id>', methods=['DELETE'],
                  strict_slashes=False)
 @swag_from('documentation/user/delete_user.yml', methods=['DELETE'])
-def delete_user_id(user_id):
+def delete_user(user_id):
     """
     Deletes a user Object
     """
@@ -75,7 +73,7 @@ def post_user():
 
 @app_views.route('/users/<user_id>', methods=['PUT'], strict_slashes=False)
 @swag_from('documentation/user/put_user.yml', methods=['PUT'])
-def put_user_id(user_id):
+def put_user(user_id):
     """
     Updates a user
     """
@@ -95,4 +93,3 @@ def put_user_id(user_id):
             setattr(user, key, value)
     storage.save()
     return make_response(jsonify(user.to_dict()), 200)
-
