@@ -1,10 +1,7 @@
 #!/usr/bin/python3
 """ Flask Application """
-<<<<<<< HEAD
 from os import environ
 from flask_cors import CORS
-=======
->>>>>>> 7ca15a4b3922b122d7b3e74b3cbca056a6eb914b
 from models import storage
 from api.v1.views import app_views
 from os import environ
@@ -16,7 +13,7 @@ from flasgger.utils import swag_from
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.register_blueprint(app_views)
-cors = CORS(app, resources={r"/api/v1/*": {"origins": "0.0.0.0"}})
+cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
 
 @app.teardown_appcontext
